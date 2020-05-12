@@ -5,6 +5,12 @@
     <UserSecretsId>aspnet-Youtube2-932B2A25-5231-48C5-A24A-E36100DCF272</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\Style.css" />
+    <None Include="wwwroot\css\Style1.css" />
+    <None Include="wwwroot\img\LogoTitlu.png" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />

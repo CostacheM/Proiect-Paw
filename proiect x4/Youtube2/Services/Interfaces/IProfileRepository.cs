@@ -9,6 +9,6 @@ namespace Youtube2.Services.Interfaces
 {
     public interface IProfileRepository : IRepositoryBase<Profile>
     {
-        public bool ProfileExists(int id);
+        public bool ProfileExists(string id);
     }
 }

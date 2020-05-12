@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Youtube2.Model;
+using Youtube2.Services.Implementation;
 
 namespace Youtube2.Areas.Identity.Pages.Account
 {
@@ -22,18 +24,18 @@ namespace Youtube2.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly ProfileService profileService;
+
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            ILogger<RegisterModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            
         }
 
         [BindProperty]
@@ -60,6 +62,14 @@ namespace Youtube2.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Nume")]
+            public string Nume { get; set; }
+
+            [Required]
+            [Display(Name = "Descriere")]
+            public string Description { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -76,6 +86,21 @@ namespace Youtube2.Areas.Identity.Pages.Account
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email, EmailConfirmed = true };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                Profile profile = new Profile();               
+                var userId = user.Id;
+                profile.ProfileId = user.Id;
+                profile.Nume = Input.Nume;
+                profile.MailAdress = Input.Email;
+                profile.Description = Input.Description;
+                profile.Password = Input.Password;
+                profile.NrLikesT = 0;
+                profile.NrDislikesT = 0;
+                profile.NrSubscribers = 0;
+                profile.SubscriptionId = 1;
+
+                await _userManager.AddToRoleAsync(user, "User");
+                profileService.Create(profile);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

@@ -12,12 +12,18 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Comment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NrLikes)
-            </th>
+            @if (this.User.IsInRole("User"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </th>
+            }
+            @if (this.User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.NrLikes)
+                </th>
+            }
             <th>
                 @Html.DisplayNameFor(model => model.NrDislikes)
             </th>

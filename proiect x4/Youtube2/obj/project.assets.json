@@ -8600,11 +8600,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\costa\\OneDrive\\Desktop\\proiect x4\\Youtube2\\Youtube2.csproj",
+      "projectUniqueName": "C:\\Users\\costa\\OneDrive\\Desktop\\Scoala\\proiect x4\\Youtube2\\Youtube2.csproj",
       "projectName": "Youtube2",
-      "projectPath": "C:\\Users\\costa\\OneDrive\\Desktop\\proiect x4\\Youtube2\\Youtube2.csproj",
+      "projectPath": "C:\\Users\\costa\\OneDrive\\Desktop\\Scoala\\proiect x4\\Youtube2\\Youtube2.csproj",
       "packagesPath": "C:\\Users\\costa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\costa\\OneDrive\\Desktop\\proiect x4\\Youtube2\\obj\\",
+      "outputPath": "C:\\Users\\costa\\OneDrive\\Desktop\\Scoala\\proiect x4\\Youtube2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\costa\\AppData\\Roaming\\NuGet\\NuGet.Config",

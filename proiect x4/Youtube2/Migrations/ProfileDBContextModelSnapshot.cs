@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Youtube2.Data;
 
-namespace Youtube2.Data.Migrations
+namespace Youtube2.Migrations
 {
     [DbContext(typeof(ProfileDBContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    partial class ProfileDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -82,10 +82,6 @@ namespace Youtube2.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -137,8 +133,6 @@ namespace Youtube2.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -241,15 +235,12 @@ namespace Youtube2.Data.Migrations
                     b.Property<int>("NrLikes")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProfileId1")
+                    b.Property<string>("ProfileId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CommentChannelId");
 
-                    b.HasIndex("ProfileId1");
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("CommCh");
                 });
@@ -278,6 +269,42 @@ namespace Youtube2.Data.Migrations
                     b.HasIndex("VideosId");
 
                     b.ToTable("CommVideo");
+                });
+
+            modelBuilder.Entity("Youtube2.Model.Profile", b =>
+                {
+                    b.Property<string>("ProfileId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailAdress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NrDislikesT")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NrLikesT")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NrSubscribers")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nume")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SubscriptionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProfileId");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("Profile");
                 });
 
             modelBuilder.Entity("Youtube2.Model.Subscription", b =>
@@ -311,10 +338,7 @@ namespace Youtube2.Data.Migrations
                     b.Property<int>("NrLikes")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProfileId1")
+                    b.Property<string>("ProfileId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Type")
@@ -325,39 +349,9 @@ namespace Youtube2.Data.Migrations
 
                     b.HasKey("VideosId");
 
-                    b.HasIndex("ProfileId1");
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("Video");
-                });
-
-            modelBuilder.Entity("Youtube2.Model.Profile", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NrDislikesT")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NrLikesT")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NrSubscribers")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nume")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubscriptionId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("SubscriptionId");
-
-                    b.HasDiscriminator().HasValue("Profile");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -414,8 +408,8 @@ namespace Youtube2.Data.Migrations
             modelBuilder.Entity("Youtube2.Model.CommentChannel", b =>
                 {
                     b.HasOne("Youtube2.Model.Profile", "Profile")
-                        .WithMany("CommCh")
-                        .HasForeignKey("ProfileId1");
+                        .WithMany("CommChannels")
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("Youtube2.Model.CommentVideo", b =>
@@ -427,13 +421,6 @@ namespace Youtube2.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Youtube2.Model.Videos", b =>
-                {
-                    b.HasOne("Youtube2.Model.Profile", "Profile")
-                        .WithMany("Video")
-                        .HasForeignKey("ProfileId1");
-                });
-
             modelBuilder.Entity("Youtube2.Model.Profile", b =>
                 {
                     b.HasOne("Youtube2.Model.Subscription", "Subscription")
@@ -441,6 +428,13 @@ namespace Youtube2.Data.Migrations
                         .HasForeignKey("SubscriptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Youtube2.Model.Videos", b =>
+                {
+                    b.HasOne("Youtube2.Model.Profile", "Profile")
+                        .WithMany("Video")
+                        .HasForeignKey("ProfileId");
                 });
 #pragma warning restore 612, 618
         }

@@ -19,7 +19,7 @@ namespace Youtube2.Services.Implementation
         {
             return this._repo.Profile.FindAll();
         }
-        public Profile GetDetailsById(int? id)
+        public Profile GetDetailsById(string? id)
         {
             return _repo.Profile.FindByCondition(m => m.ProfileId == id);
         }
@@ -40,12 +40,12 @@ namespace Youtube2.Services.Implementation
             _repo.Profile.Update(profile);
             _repo.Save();
         }
-        public bool ProfileExists(int id)
+        public bool ProfileExists(string id)
         {
             bool found = _repo.Profile.ProfileExists(id);
             return found;
         }
-        public void DeleteProfile(int id)
+        public void DeleteProfile(string id)
         {
             var profile = _repo.Profile.FindByCondition(m => m.ProfileId == id);
             _repo.Profile.Delete(profile);

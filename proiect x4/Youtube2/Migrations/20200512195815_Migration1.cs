@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Youtube2.Data.Migrations
+namespace Youtube2.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class Migration1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,11 +47,24 @@ namespace Youtube2.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Subs",
+                columns: table => new
+                {
+                    SubscriptionId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Notification = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subs", x => x.SubscriptionId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +85,7 @@ namespace Youtube2.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -153,6 +165,99 @@ namespace Youtube2.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Profile",
+                columns: table => new
+                {
+                    ProfileId = table.Column<string>(nullable: false),
+                    Nume = table.Column<string>(nullable: true),
+                    MailAdress = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    NrLikesT = table.Column<int>(nullable: false),
+                    NrDislikesT = table.Column<int>(nullable: false),
+                    NrSubscribers = table.Column<int>(nullable: false),
+                    SubscriptionId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Profile", x => x.ProfileId);
+                    table.ForeignKey(
+                        name: "FK_Profile_Subs_SubscriptionId",
+                        column: x => x.SubscriptionId,
+                        principalTable: "Subs",
+                        principalColumn: "SubscriptionId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CommCh",
+                columns: table => new
+                {
+                    CommentChannelId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProfileId = table.Column<string>(nullable: true),
+                    Comment = table.Column<string>(nullable: true),
+                    NrLikes = table.Column<int>(nullable: false),
+                    NrDislikes = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CommCh", x => x.CommentChannelId);
+                    table.ForeignKey(
+                        name: "FK_CommCh_Profile_ProfileId",
+                        column: x => x.ProfileId,
+                        principalTable: "Profile",
+                        principalColumn: "ProfileId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Video",
+                columns: table => new
+                {
+                    VideosId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProfileId = table.Column<string>(nullable: true),
+                    NrLikes = table.Column<int>(nullable: false),
+                    NrDislikes = table.Column<int>(nullable: false),
+                    NrComments = table.Column<int>(nullable: false),
+                    Video = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Video", x => x.VideosId);
+                    table.ForeignKey(
+                        name: "FK_Video_Profile_ProfileId",
+                        column: x => x.ProfileId,
+                        principalTable: "Profile",
+                        principalColumn: "ProfileId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CommVideo",
+                columns: table => new
+                {
+                    CommentVideoId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VideosId = table.Column<int>(nullable: false),
+                    Comment = table.Column<string>(nullable: true),
+                    NrLikes = table.Column<int>(nullable: false),
+                    NrDislikes = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CommVideo", x => x.CommentVideoId);
+                    table.ForeignKey(
+                        name: "FK_CommVideo_Video_VideosId",
+                        column: x => x.VideosId,
+                        principalTable: "Video",
+                        principalColumn: "VideosId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +296,26 @@ namespace Youtube2.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CommCh_ProfileId",
+                table: "CommCh",
+                column: "ProfileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CommVideo_VideosId",
+                table: "CommVideo",
+                column: "VideosId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Profile_SubscriptionId",
+                table: "Profile",
+                column: "SubscriptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Video_ProfileId",
+                table: "Video",
+                column: "ProfileId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +336,25 @@ namespace Youtube2.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CommCh");
+
+            migrationBuilder.DropTable(
+                name: "CommVideo");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Video");
+
+            migrationBuilder.DropTable(
+                name: "Profile");
+
+            migrationBuilder.DropTable(
+                name: "Subs");
         }
     }
 }

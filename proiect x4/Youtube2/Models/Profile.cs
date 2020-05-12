@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Youtube2.Model
 {
-    public class Profile //: IdentityUser
+    public class Profile
     {
-        public int ProfileId { get; set; }
-        //public string UserId { get; set; }
+        public string ProfileId { get; set; }     
         public string Nume { get; set; }
+        public string MailAdress { get; set; }
         public string Description { get; set; }
-        public string Password { private get; set; }
+        public string Password { get; set; }
         public int NrLikesT { get; set; }
         public int NrDislikesT { get; set; }
         public int NrSubscribers { get; set; }
@@ -19,6 +19,6 @@ namespace Youtube2.Model
 
         public Subscription Subscription { get; set; }
         public ICollection<Videos> Video { get; set; }
-        public ICollection<CommentChannel> CommCh { get; set; }
+        public ICollection<CommentChannel> CommChannels { get; set; }
     }
 }

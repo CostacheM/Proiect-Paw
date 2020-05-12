@@ -6,7 +6,7 @@ namespace Youtube2.Model
     public class Videos
     {
         public int VideosId { get; set; }
-        public int ProfileId { get; set; } 
+        public string ProfileId { get; set; } 
         public string Description { private get; set; }
         public int NrLikes { get; set; }
         public int NrDislikes { get; set; }

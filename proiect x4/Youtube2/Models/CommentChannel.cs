@@ -9,7 +9,7 @@ namespace Youtube2.Model
        
         public int CommentChannelId { get; set; }
 
-        public int ProfileId { get; set; }
+        public string ProfileId { get; set; }
         public string Comment { get; set; }
         public int NrLikes { get; set; }
         public int NrDislikes { get; set; }

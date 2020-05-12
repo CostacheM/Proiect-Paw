@@ -1,0 +1,93 @@
+#inln {
+	display: inline;
+}
+#margin {
+	display: block;
+	margin-left: 100px;
+}
+
+#searchStyle{
+	background-color: black;
+	color: white;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 20px;
+	display: block;
+	width: 400;
+	height: 30;
+    margin-left: 500px;
+	margin-top: -33px;
+}
+.btn {
+  background-color: Red;
+  margin-top: 20px;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: DarkRed;
+}
+
+.sidebar {
+	height:100%;
+	width:200px;
+	background-color:#000;
+	position:fixed!important;
+	z-index:1;
+	overflow:auto;
+}
+.border-right{
+	border-right:1px solid #f00!important
+}
+.teal{
+	color:#fff!important;
+	background-color:#000!important
+}
+#f1{
+	color: red;
+	display: inline;
+	font-size: 14px;
+	margin-top: -15px;
+	font-family: "Times New Roman", Times, serif;
+}
+#f2{
+	color: white;
+	display: inline;
+	font-size: 14px;
+	margin-top: -15px;
+	font-family: "Times New Roman", Times, serif;
+}
+
+h1 {
+	display: block;
+	font-size: 30px;
+	color: white;
+	font-family: Aerial;
+	margin-left: 100px;
+}
+.rand{
+	display: inline;
+	margin-left: 50px;
+}
+#video{
+	margin-left: 10px;
+	
+}
+a {
+	text-decoration: none;
+}
+
+.trText {
+	display: inline;
+	font-size: 20px;
+	color: white;
+	font-family: Aerial;
+	margin-left: 80px;
+	margin-top: -70px; 
+	
+}

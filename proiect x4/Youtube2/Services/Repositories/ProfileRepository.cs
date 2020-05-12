@@ -17,7 +17,7 @@ namespace Youtube2.Services.Repositories
         {
         }
 
-        public bool ProfileExists(int id)
+        public bool ProfileExists(string id)
         {
             var found = RepositoryContext.Profile.Any(e => e.ProfileId == id);
             return found;

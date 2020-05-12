@@ -16,6 +16,7 @@ using Youtube2.Model;
 using Youtube2.Services.Interfaces;
 using Youtube2.Services.Repositories;
 using Youtube2.Services.Implementation;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Youtube2
 {
@@ -42,14 +43,24 @@ namespace Youtube2
             services.AddScoped<SubbsService>();
             services.AddScoped<CommentChannelService>();
             services.AddScoped<CommentVideoService>();
-            
+
+            //services.AddMvc().AddRazorPagesOptions(options =>
+            //{
+            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
+            //}).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
             services.AddDbContext<ProfileDBContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ProfileDBContext>();
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDefaultIdentity<Utilizator>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<CapitaleEuropeneDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ProfileDBContext>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
