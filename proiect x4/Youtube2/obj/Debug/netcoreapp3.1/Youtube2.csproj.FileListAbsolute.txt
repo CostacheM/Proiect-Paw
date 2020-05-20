@@ -218,8 +218,6 @@ C:\Users\costa\OneDrive\Desktop\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Razo
 C:\Users\costa\OneDrive\Desktop\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.csprojAssemblyReference.cache
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\staticwebassets\Youtube2.StaticWebAssets.Manifest.cache
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\staticwebassets\Youtube2.StaticWebAssets.xml
-C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.RazorAssemblyInfo.cache
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.RazorAssemblyInfo.cs
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.AssemblyInfoInputs.cache
@@ -435,3 +433,10 @@ C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.csproj.CopyComplete
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.csprojAssemblyReference.cache
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Razor\Views\Profiles\Home.cshtml.g.cs
+C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Razor\Views\Home\Subscription.cshtml.g.cs
+C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Razor\Views\Home\Profile.cshtml.g.cs
+C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\bin\Debug\netcoreapp3.1\WebMatrix.Data.dll
+C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\bin\Debug\netcoreapp3.1\WebMatrix.WebData.dll
+C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Razor\Views\Home\Tranding.cshtml.g.cs

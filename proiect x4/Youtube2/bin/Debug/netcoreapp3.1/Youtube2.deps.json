@@ -30,6 +30,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.1",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.1",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.2",
+          "WebMatrix.WebData": "2.0.30506",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -301,6 +302,31 @@
         },
         "compile": {
           "Youtube2.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebPages.Data/2.0.20710": {
+        "runtime": {
+          "lib/net40/WebMatrix.Data.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.20710.0"
+          }
+        },
+        "compile": {
+          "lib/net40/WebMatrix.Data.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebPages.WebData/2.0.20710": {
+        "dependencies": {
+          "Microsoft.AspNet.WebPages.Data": "2.0.20710"
+        },
+        "runtime": {
+          "lib/net40/WebMatrix.WebData.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.20710.0"
+          }
+        },
+        "compile": {
+          "lib/net40/WebMatrix.WebData.dll": {}
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.1": {
@@ -2251,6 +2277,11 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "WebMatrix.WebData/2.0.30506": {
+        "dependencies": {
+          "Microsoft.AspNet.WebPages.WebData": "2.0.20710"
+        }
+      },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
         "compile": {
           "Microsoft.AspNetCore.Antiforgery.dll": {}
@@ -3849,6 +3880,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Microsoft.AspNet.WebPages.Data/2.0.20710": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PTwS5C1vF69FDikWhUkJZ4qb96yxtdVuVR90Hjt7e/GDNVOeR7tXMYWHs9cPP0v35EiO+V6BUj1c8dNCUXW7Ag==",
+      "path": "microsoft.aspnet.webpages.data/2.0.20710",
+      "hashPath": "microsoft.aspnet.webpages.data.2.0.20710.nupkg.sha512"
+    },
+    "Microsoft.AspNet.WebPages.WebData/2.0.20710": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BZsx1iI2qZ9c21QKD3KAk7BGrGQ3gkGw8a7AdkmDNJoK+RyEcEy46lyzpyiD7BkVKvlszO7er2m2nR2NWK6u9Q==",
+      "path": "microsoft.aspnet.webpages.webdata/2.0.20710",
+      "hashPath": "microsoft.aspnet.webpages.webdata.2.0.20710.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.1": {
       "type": "package",
       "serviceable": true,
@@ -4982,6 +5027,13 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "WebMatrix.WebData/2.0.30506": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kDz6OjnVNm/asletyqpHmb0y/56KduvxWhi6KJdAgnT45LZPu6IUETXNISA1icfoRwBWrUirQxAZw6JwhYrqoQ==",
+      "path": "webmatrix.webdata/2.0.30506",
+      "hashPath": "webmatrix.webdata.2.0.30506.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
       "type": "referenceassembly",

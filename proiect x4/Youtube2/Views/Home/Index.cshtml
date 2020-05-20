@@ -11,15 +11,27 @@
 
 <div>
     <div style="background-color:black;">
-        <img src="LogoTitlu.png" width="40" height="40">
+        <img src="~/img/LogoTitlu.png" width="40" height="40">
         <font id="f1">You</font><font id="f2">Tube</font>
-
-
-        <div class="sidebar w3-bar-block border-right" style="display:none" id="mySidebar">
-            <button onclick="w3_close()" class="btn"><i class="fa fa-times-circle"></i> Close</button>
-            <a href="index.html"><button class="btn"><i class="fa fa-home"></i> Home </button></a>
-            <a href="Tranding.html"><button class="btn"><i class="fa fa-fire"></i> Tranding </button></a>
-        </div>
+                                <div class="sidebar w3-bar-block border-right" style="display:none" id="mySidebar">
+                                    <button onclick="w3_close()" class="btn"><i class="fa fa-times-circle"></i> Close</button>
+                                    <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Index">
+                                        <button type="submit" class="btn"><i class="fa fa-home"></i> Home </button>
+                                    </form>
+                                    <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Tranding">
+                                        <button type="submit" class="btn"><i class="fa fa-home"></i> Tranding </button>
+                                    </form>
+                                    @if (this.User.IsInRole("User"))
+                                    {
+                                        <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Subscription">
+                                            <button type="submit" class="btn"><i class="fa fa-home"></i> Subscription </button>
+                                        </form>
+                                        <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Profile">
+                                            <button type="submit" class="btn"><i class="fa fa-home"></i> Profile </button>
+                                        </form>
+                                    }
+                                </div>
+     
 
         <div class="teal">
             <button class="w3-button teal w3-xlarge" onclick="w3_open()">☰</button>
