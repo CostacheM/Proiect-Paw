@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Youtube2.Model;
 using Youtube2.Models;
 using Youtube2.Services.Implementation;
+using Youtube2.ViewModels;
 
 namespace Youtube2.Controllers
 {
@@ -16,16 +18,18 @@ namespace Youtube2.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<IdentityUser> userManager;
-        //var db = Youtube-Datapase.Open("WebPagesMovies");
-        //var selectedData = db.Query("SELECT * FROM Movies");
-        //var grid = new WebGrid(source: selectedData);
         private ProfileService profileService;
+        private VideosService videosService;
+        //private List<Videos> videos = new List<Videos>(200);
+ 
 
-        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, ProfileService profileService)
+        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, 
+            ProfileService profileService, VideosService videosService)
         {
             _logger = logger;
             this.userManager = userManager;
             this.profileService = profileService;
+            this.videosService = videosService;
         }
 
         public IActionResult Index()
@@ -40,19 +44,43 @@ namespace Youtube2.Controllers
 
         public IActionResult Tranding()
         {
-            return View();
+            var videosVM = new VideosVM
+            {
+                Index = 0,
+                videos = videosService.GetAllVideosOrdered()
+            };
+            return View(videosVM);
         }
 
         public IActionResult Profile()
         {
-            ViewBag.userid = userManager.GetUserId(HttpContext.User);
-            Profile profilSelectat = profileService.GetDetailsById(ViewBag.userid);
-            ViewBag.Nume = profilSelectat.Nume;
-            ViewBag.Descriere = profilSelectat.Description;
-            ViewBag.NrL = profilSelectat.NrLikesT;
-            ViewBag.NrD = profilSelectat.NrDislikesT;
-            ViewBag.Subs = profilSelectat.NrSubscribers;
-            return View();
+            
+            var userId = userManager.GetUserId(HttpContext.User);
+            Profile profilSelectat = profileService.GetDetailsById(userId);
+
+            //string username = txtusername.Text;
+
+
+            var profileVM = new ProfileVM {
+                    UserId = userId,
+                    Nume = profilSelectat.Nume,
+                    Description = profilSelectat.Description,
+                    NrDislikes = profilSelectat.NrDislikesT,
+                    NrLikes = profilSelectat.NrLikesT,
+                    NrSubscribers = profilSelectat.NrSubscribers,
+                    Videos = videosService.GetVideosByUserId(userId)
+             };
+
+            return View(profileVM);
+ }
+
+        public IActionResult Videos()
+        {
+            var userId = userManager.GetUserId(HttpContext.User);
+            Profile profilSelectat = profileService.GetDetailsById(userId);
+            var videos = videosService.GetVideosByUserId(userId);
+
+            return View(videos);
         }
 
         public IActionResult Privacy()

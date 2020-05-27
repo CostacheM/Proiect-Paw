@@ -440,3 +440,4 @@ C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\bin\Debug\netcoreapp3
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Youtube2.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Razor\Views\Home\Tranding.cshtml.g.cs
+C:\Users\costa\OneDrive\Desktop\Scoala\proiect x4\Youtube2\obj\Debug\netcoreapp3.1\Razor\Views\Home\Videos.cshtml.g.cs

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    string userId = ViewData["UserId"] as string;
 }
 
 <h1>Index</h1>
@@ -55,9 +56,24 @@
                 @Html.DisplayFor(modelItem => item.Profile.ProfileId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.VideosId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.VideosId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.VideosId">Delete</a>
+                @if (userId == item.ProfileId)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.VideosId">Edit</a>
+                }
+
+                <a asp-action="Details" asp-route-id="@item.VideosId"> Details </a>
+
+                @if (userId == item.ProfileId)
+                {
+                    <a asp-action="Delete" asp-route-id="@item.VideosId"> Delete </a>
+                }
+
+                @if (this.User.IsInRole("Admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.VideosId">Edit</a>                   
+                    <a asp-action="Delete" asp-route-id="@item.VideosId"> Delete </a>
+
+                }
             </td>
         </tr>
 }

@@ -1,16 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
 
-
-@model Youtube2.Model.Profile
+@model Youtube2.ViewModels.ProfileVM
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -53,50 +43,68 @@
         </div>
 
         <div>
-            <h1><u> Name : @ViewBag.Nume </u></h1>
+            <h1><u> Name : @Model.Nume </u></h1>
             </br>
             </br>
         </div>
         <div>
-            <h1><u> Description : @ViewBag.Descriere </u></h1>
+            <h1><u> Description : @Model.Description </u></h1>
             </br>
             </br>
         </div>
         <div>
-            <h1><u> Subbs number : @ViewBag.Subs </u></h1>
+            <h1><u> Subbs number : @Model.NrSubscribers</u></h1>
             </br>
             </br>
         </div>
         <div>
-            <h1><u> Total Number of Likes : @ViewBag.NrL </u></h1>
+            <h1><u> Total Number of Likes : @Model.NrLikes </u></h1>
             </br>
             </br>
         </div>
         <div>
-            <h1><u> Total Number of Dislikes : @ViewBag.NrD </u></h1>
+            <h1><u> Total Number of Dislikes : @Model.NrDislikes </u></h1>
             </br>
             </br>
         </div>
 
         <div>
-            <h1><u> Upload a video </u></h1>
-            <div id="margin">
-                <a href="UploadVideo.html"><button class="btn"><i class="fa fa-male"></i> Upload</button></a>
-                </br>
-                </br>
-            </div>
+
+            <a class="nav-link text-dark" asp-controller="Videos" asp-action="Create"><font color="white"><h1><u> Upload a video </u></h1></font></a>
+
+        </div>
+
+        <div>
+
+            <a class="nav-link text-dark" asp-controller="Videos" asp-action="Index"><font color="white"><h1><u> Manage Videos </u></h1></font></a>
+
         </div>
 
         <div>
             <h1><u> Uploaded videos </u></h1>
         </div>
 
-        <div class="rand">
-            <iframe id="video" width="300" height="169" src="https://www.youtube.com/embed/2fngvQS_PmQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        @*<div class="rand">
+            <iframe id="video" width="300" height="169" src="https://www.youtube.com/embed/K0ibBPhiaG0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <iframe id="video" width="300" height="169" src="https://www.youtube.com/embed/K0ibBPhiaG0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <iframe id="video" width="300" height="169" src="https://www.youtube.com/embed/nfs8NYg7yQM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <iframe id="video" width="300" height="169" src="https://www.youtube.com/embed/JGwWNGJdvx8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+        </div>*@
+        @if (Model.Videos != null)
+        {
+            @foreach (var item in Model.Videos)
+            {
+                <iframe id="video" width="300" height="169" src=@item.Video frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <br>
+                <font color="white">NrLikes: @item.NrLikes</font>
+                <br>
+                <font color="white">NrDislikes: @item.NrDislikes</font>
+                <br>
+                <font color="white">NrComentarii: @item.NrComments</font>
+                <br>
+            }
+        }
+
     </div>
 </div>
 

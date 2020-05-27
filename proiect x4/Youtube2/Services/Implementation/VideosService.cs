@@ -7,9 +7,13 @@ using Youtube2.Services.Interfaces;
 
 namespace Youtube2.Services.Implementation
 {
+
     public class VideosService
     {
         private IRepositoryWrapper _repo;
+        private List<string> links = new List<string>(20);
+        private List<Videos> videos = new List<Videos>(200);
+
 
         public VideosService(IRepositoryWrapper repo)
         {
@@ -19,6 +23,41 @@ namespace Youtube2.Services.Implementation
         {
             return this._repo.Video.FindAll();
         }
+
+        public List<string> GetAllLinksById(string id)
+        {
+            foreach (var item in this._repo.Video.FindAll())
+            {
+                if (item.ProfileId == id)
+                {
+                    links.Add(item.Video);
+                }
+
+            }
+            return links;
+        }
+
+        public List<Videos> GetVideosByUserId(string id)
+        {
+            foreach (var item in this._repo.Video.FindAll())
+            {
+                if (item.ProfileId == id)
+                {
+                    videos.Add(item);
+                }
+
+            }
+            return videos;
+        }
+
+        public List<Videos> GetAllVideosOrdered()
+        {
+            var videos = this._repo.Video.FindAll();
+            List < Videos > query = videos.OrderByDescending(vid => vid.NrLikes).ToList();
+
+            return query;
+        }
+
         public Videos GetDetailsById(int? id)
         {
             return _repo.Video.FindByCondition(m => m.VideosId == id);
@@ -30,8 +69,9 @@ namespace Youtube2.Services.Implementation
             return _repo.Profile.FindAll();
         }
 
-        public void Create(Videos videos)
+        public void Create(Videos videos, string profilId)
         {
+            videos.ProfileId = profilId;
             _repo.Video.Create(videos);
             _repo.Save();
         }

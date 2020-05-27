@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,16 +15,23 @@ namespace Youtube2.Controllers
     public class VideosController : Controller
     {
         private readonly VideosService videoService;
+        private readonly ProfileService profileService;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public VideosController(VideosService videoService)
+        public VideosController(VideosService videoService, ProfileService profileService, UserManager<IdentityUser> userManager)
         {
             this.videoService = videoService;
+            this.profileService = profileService;
+            this.userManager = userManager;
         }
 
         // GET: Videos
         public async Task<IActionResult> Index()
         {
+            var userId = userManager.GetUserId(User);
+            ViewData["UserId"] = userId;
             var video = videoService.GetAllVideos();
+
             return View(video);
         }
 
@@ -59,9 +67,12 @@ namespace Youtube2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("VideosId,ProfileId,NrLikes,NrDislikes,NrComments,Video,Type")] Videos videos)
         {
+            var profileId = userManager.GetUserId(HttpContext.User);
+
             if (ModelState.IsValid)
             {
-                videoService.Create(videos);
+                videoService.Create(videos,profileId);
+                //videos.
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProfileId"] = new SelectList(videoService.GetAllProfiles(), "ProfileId", "ProfileId");
